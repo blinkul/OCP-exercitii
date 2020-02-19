@@ -28,6 +28,7 @@ public class Zoo {
     }
 
     public static void printWithProperties(Locale locale) {
+        String name = "Ciprian";
         ResourceBundle rb = ResourceBundle.getBundle("cap5/resourcebundle/propertyfile/Zoo", locale);
 
         //load properties to Properties
@@ -35,7 +36,7 @@ public class Zoo {
         rb.keySet().stream().forEach(k -> properties.put(k, rb.getString(k)));
 
         //output translations
-        System.out.println(properties.getProperty("hello"));
+        System.out.println(MessageFormat.format(properties.getProperty("hello"), name));
         System.out.println(properties.getProperty("open"));
         //method to call with a default value
         //ResourceBundle does not have a default value for missing keys.
