@@ -1,5 +1,6 @@
-package cap5.localization;
+package cap5.resourcebundle.propertyfile;
 
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -17,17 +18,17 @@ public class Zoo {
         printWithProperties(us);
         System.out.println();
         printWithProperties(france);
-
     }
 
-    public static void printWithResourceBundle(Locale locale) {
-        ResourceBundle rb = ResourceBundle.getBundle("Zoo", locale);
-        System.out.println(rb.getString("hello"));
+    private static void printWithResourceBundle(Locale locale) {
+        ResourceBundle rb = ResourceBundle.getBundle("cap5/resourcebundle/propertyfile/Zoo", locale);
+        String name = "Ciprian";
+        System.out.println(MessageFormat.format(rb.getString("hello"), name));
         System.out.println(rb.getString("open"));
     }
 
     public static void printWithProperties(Locale locale) {
-        ResourceBundle rb = ResourceBundle.getBundle("cap5/localization/Zoo", locale);
+        ResourceBundle rb = ResourceBundle.getBundle("cap5/resourcebundle/propertyfile/Zoo", locale);
 
         //load properties to Properties
         Properties properties = new Properties();
@@ -39,6 +40,5 @@ public class Zoo {
         //method to call with a default value
         //ResourceBundle does not have a default value for missing keys.
         System.out.println(properties.getProperty("notOpen", "Value is not defined!"));
-
     }
 }
