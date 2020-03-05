@@ -1,10 +1,13 @@
 package cap6.exceptions.autoclosable;
 
+import java.io.Closeable;
+
 public class SuppressedExceptionsMain {
 
     public static void main(String[] args) {
 
-        try(TurkeyCage cage = new TurkeyCage()) {
+        try(TurkeyCage cage = new TurkeyCage();
+            TurkeyCage cage2 = new TurkeyCage();) {
             //This one will throw first
             throw new IllegalStateException("Turkey ran off");
         } catch (IllegalStateException e) {
@@ -17,7 +20,7 @@ public class SuppressedExceptionsMain {
     }
 }
 
-class TurkeyCage implements AutoCloseable {
+class TurkeyCage implements Closeable {
     @Override
     public void close() throws IllegalStateException {
         throw new IllegalStateException("Turkey Escaped from cage!!!");
